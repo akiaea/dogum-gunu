@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>dogum gunun kutlu olsun?</title>
     <style>
-        h1, h2, .success-message h2 {
-            color: #000000 !important;
-        }
         body {
             font-family: 'Clarendon', 'Georgia', serif;
             background-color: #ffffff;
@@ -118,14 +115,9 @@
             </div>
         </div>
 
-       <div id="success" class="success-message">
-    <img src="when school is over and you have no homework.jpg"
-         alt="YIPPEEE"
-         style="max-width:350px; width:100%; margin-bottom:20px;">
-
-    <h2>dogum gunun kutlu olsun</h2>
-</div>
-        
+        <div id="success" class="success-message">
+            <h2>dogum gunun kutlu olsun</h2>
+        </div>
     </div>
 
     <script>
@@ -156,10 +148,42 @@
                 question.innerText = "olucak";
             }
         }
-function accepted() {
-    // Yapısal çökme olmaması için net geçiş
-    document.getElementById('quiz').style.display = 'none';
-    document.getElementById('success').style.display = 'block';
+
+        function accepted() {
+            // Yapısal çökme olmaması için net geçiş
+            document.getElementById('quiz').style.display = 'none';
+            document.getElementById('success').style.display = 'block';
+
+            const colors = ['#ff0000', '#800080', '#ffffff', '#ffeb3b', '#4caf50', '#00bcd4'];
+            for (let i = 0; i < 150; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                
+                // Tam merkezden patlama çıkışı
+                confetti.style.left = '50vw';
+                confetti.style.top = '50vh';
+                
+                const randomX = (Math.random() * 700 - 350) + 'px';
+                const randomY = (Math.random() * 700 - 350) + 'px';
+                const randomRotate = (Math.random() * 720 - 360) + 'deg';
+                
+                confetti.style.setProperty('--x', randomX);
+                confetti.style.setProperty('--y', randomY);
+                confetti.style.setProperty('--r', randomRotate);
+                
+                const randomColorIndex = Math.floor(Math.random() * colors.length);
+                confetti.style.backgroundColor = colors[randomColorIndex];
+                
+                confetti.style.width = (Math.random() * 8 + 6) + 'px';
+                confetti.style.height = (Math.random() * 14 + 6) + 'px';
+                
+                document.body.appendChild(confetti);
+                
+                // 1 saniye sonra dom temizliği
+                setTimeout(() => { confetti.remove(); }, 1000);
+            }
+        }
+    </script>
 
 </body>
 </html>
