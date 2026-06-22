@@ -156,42 +156,25 @@
                 question.innerText = "olucak";
             }
         }
+function accepted() {
+    // Yapısal çökme olmaması için net geçiş
+    document.getElementById('quiz').style.display = 'none';
+    document.getElementById('success').style.display = 'block';
 
-        function accepted() {
-            // Yapısal çökme olmaması için net geçiş
-            document.getElementById('quiz').style.display = 'none';
-            document.getElementById('success').style.display = 'block';
+    // Yeni, tertemiz konfeti efekti
+    const konfetiKutusu = document.createElement('div');
+    konfetiKutusu.innerHTML = "🎉🎊✨🎈🎉"; 
+    konfetiKutusu.style.fontSize = "50px";
+    konfetiKutusu.style.position = "fixed";
+    konfetiKutusu.style.top = "20%";
+    konfetiKutusu.style.left = "50%";
+    konfetiKutusu.style.transform = "translateX(-50%)";
+    konfetiKutusu.style.zIndex = "9999";
+    document.body.appendChild(konfetiKutusu);
 
-            const colors = ['#ff0000', '#800080', '#ffffff', '#ffeb3b', '#4caf50', '#00bcd4'];
-            for (let i = 0; i < 150; i++) {
-                const confetti = document.createElement('div');
-                confetti.classList.add('confetti');
-                
-                // Tam merkezden patlama çıkışı
-                confetti.style.left = '50vw';
-                confetti.style.top = '50vh';
-                
-                const randomX = (Math.random() * 700 - 350) + 'px';
-                const randomY = (Math.random() * 700 - 350) + 'px';
-                const randomRotate = (Math.random() * 720 - 360) + 'deg';
-                
-                confetti.style.setProperty('--x', randomX);
-                confetti.style.setProperty('--y', randomY);
-                confetti.style.setProperty('--r', randomRotate);
-                
-                const randomColorIndex = Math.floor(Math.random() * colors.length);
-                confetti.style.backgroundColor = colors[randomColorIndex];
-                
-                confetti.style.width = (Math.random() * 8 + 6) + 'px';
-                confetti.style.height = (Math.random() * 14 + 6) + 'px';
-                
-                document.body.appendChild(confetti);
-                
-                // 1 saniye sonra dom temizliği
-                setTimeout(() => { confetti.remove(); }, 1000);
-            }
-        }
-    </script>
+    // 2 saniye sonra yok olsun
+    setTimeout(() => { konfetiKutusu.remove(); }, 2000);
+}
 
 </body>
 </html>
